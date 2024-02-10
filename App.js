@@ -1,33 +1,31 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-//const heading = React.createElement("h1", { "id": "heading"}, 'Namaste React');
+const Header = () => {
+  return (
+    <div className="header">
+      <div className="logo-container">
+        <img className="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdaMYtVi9_tfNcpsbGGseU6ehYgV9UeU3h7A&usqp=CAU"></img>
+      </div>
+      <div className="nav-items">
+      <ul>
+        <li>Home</li>
+        <li>About Us</li>
+        <li>Contact Us</li>
+        <li>Cart</li>
+      </ul>
+      </div>
+    </div>
+  )
+}
 
-// Jsx is not html inside javascript or react . It is html or xml like syntax
-
-const title = (
-  <h1 className="head" tabIndex="5">
-  
-    Namste React !
-  </h1>
-);
-
-const Title = () => (
-  <h1 className="head" tabIndex="5">
-    Namste Recat functional component !
-  </h1>
-)
-
-// React element
-// you can write javascript inside jsx
-const HeadingComponent = () => (
-  <div id="container">
-    {title}
-    { Title() } 
-    <Title/>
-    <h1 className="heading">Namaste react functional component again</h1>
-  </div>
-);
+const AppLayout = () => {
+  return (
+    <div className="app">
+      <Header/>
+    </div>
+  )
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<HeadingComponent />);
+root.render(<AppLayout />);
