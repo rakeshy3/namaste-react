@@ -7,17 +7,25 @@ import ReactDOM from "react-dom/client";
 
 const title = (
   <h1 className="head" tabIndex="5">
-    {" "}
-    Namste Recat !
+  
+    Namste React !
   </h1>
 );
+
+const Title = () => (
+  <h1 className="head" tabIndex="5">
+    Namste Recat functional component !
+  </h1>
+)
 
 // React element
 // you can write javascript inside jsx
 const HeadingComponent = () => (
   <div id="container">
     {title}
-    <h1 className="heading">Namaste react functional component</h1>
+    { Title() } 
+    <Title/>
+    <h1 className="heading">Namaste react functional component again</h1>
   </div>
 );
 
