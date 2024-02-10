@@ -2,7 +2,6 @@
   "name": "namaste-react",
   "version": "1.0.0",
   "description": "First react dev setup",
-  "main": "index.js",
   "scripts": {
     "test": "jest"
   },
