@@ -1,7 +1,10 @@
-import React from 'react';
-import ReactDOM  from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-const Parent = React.createElement("div", null, 'Hello React');
+//const heading = React.createElement("h1", { "id": "heading"}, 'Namaste React');
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(Parent);
+// Jsx is not html inside javascript or react . It is html or xml like syntax
+const jsxheading = <h1 id="heading">Namaste React</h1>;
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(jsxheading);
