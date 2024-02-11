@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import RestaurantCrad from './RestaurantCard';
 import rseObj from '../utils/mockData';
+import Shimmer from './Shimmer';
  const Body = () => {
 
   const fetchData = async () => {
@@ -17,6 +18,12 @@ import rseObj from '../utils/mockData';
     fetchData();
   }, [])
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
+
+  if(listOfRestaurant?.length === 0){
+    return <Shimmer />
+  }
+
+
     return (
       <div className="body">
         <div className="filter">
