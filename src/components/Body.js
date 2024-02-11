@@ -18,11 +18,25 @@ import Shimmer from './Shimmer';
     fetchData();
   }, [])
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
+  const [searchText, setsearchText] = useState('');
 
 
     return listOfRestaurant?.length === 0 ? <Shimmer /> : (
       <div className="body">
         <div className="filter">
+          <div className='search'>
+            <input className='search-bax' value={searchText} onChange={(e) => {
+              setsearchText(e.target.value)
+            }} />
+            <button onClick={() => {
+              // filter
+              const filteredData = listOfRestaurant?.filter((res) => {
+                return (res?.info?.name)?.toLowerCase().includes(searchText?.toLowerCase());
+              })
+              setListOfRestaurant(filteredData);
+            }}>Search</button>
+
+          </div>
             <button className='filter-btn' onClick={()=> {                
                 const filtredList = listOfRestaurant?.filter((res) => res?.info?.avgRating > 4);
                 setListOfRestaurant(filtredList);
