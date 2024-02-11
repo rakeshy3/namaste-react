@@ -19,12 +19,8 @@ import Shimmer from './Shimmer';
   }, [])
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
 
-  if(listOfRestaurant?.length === 0){
-    return <Shimmer />
-  }
 
-
-    return (
+    return listOfRestaurant?.length === 0 ? <Shimmer /> : (
       <div className="body">
         <div className="filter">
             <button className='filter-btn' onClick={()=> {                
@@ -36,6 +32,7 @@ import Shimmer from './Shimmer';
          
   
           {
+
             listOfRestaurant?.map((res) => (
               <RestaurantCrad resData = {res} key={res?.info?.id}  />
             ))
