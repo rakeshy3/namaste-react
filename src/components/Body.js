@@ -5,7 +5,8 @@ import Shimmer from './Shimmer';
  const Body = () => {
 
   const fetchData = async () => {
-    const data = await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
+    // added https://corsproxy.io/? as prefix in url to bypass cors issue
+    const data = await fetch('https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
 
     const json = await data.json();
     const { data: { cards } } = json;
