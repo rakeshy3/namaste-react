@@ -1,28 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Shimmer from './Shimmer';
-import { CDN_URL, MENU_API } from '../utils/constants';
+import useRestaurantMenu from '../utils/useRestaurantMenu';
 
 const RestaurantMenu = () => {
     const { resId } = useParams();
-    const [resInfo, setResInfo] = useState(null);
-    const fetchMenu = async () => {
-        console.log('resId=', resId)
-        // added https://corsproxy.io/? as prefix in url to bypass cors issue
-        const data = await fetch(`${MENU_API}${resId}&catalog_qa=undefined&submitAction=ENTER`);
-    
-        const json = await data.json();
-        setResInfo(json?.data)
-        
-        //const resList = cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-        //setListOfRestaurant(resList);
-      }
-
-    useEffect(() => {
-        fetchMenu();
-    }, [])
-
-
+    const resInfo = useRestaurantMenu(resId)
+console.log('resInfo=', resInfo)
     if (resInfo === null) return <Shimmer />;
 
     const { itemCards } =

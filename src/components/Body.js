@@ -3,17 +3,24 @@ import RestaurantCrad from './RestaurantCard';
 import rseObj from '../utils/mockData';
 import Shimmer from './Shimmer';
 import { Link } from 'react-router-dom';
+import useOnlineStatus from '../utils/useOnlineStatus';
  const Body = () => {
-
+  const onlineStatus = useOnlineStatus();
   const fetchData = async () => {
-    // added https://corsproxy.io/? as prefix in url to bypass cors issue
-    const data = await fetch('https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
+  try {
+      // added https://corsproxy.io/? as prefix in url to bypass cors issue
+      const data = await fetch('https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
 
-    const json = await data.json();
-    const { data: { cards } } = json;
-    const resList = cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-    setListOfRestaurant(resList);
-    setFiltredRestaurant(resList);
+      const json = await data.json();
+      const { data: { cards } } = json;
+      const resList = cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+      setListOfRestaurant(resList);
+      setFiltredRestaurant(resList);
+  } catch (error) {
+    console.log(error);
+  }
+
+  
   }
  
   useEffect(() => {
@@ -24,6 +31,8 @@ import { Link } from 'react-router-dom';
   const [filtredRestaurant, setFiltredRestaurant] = useState([]);
   const [searchText, setsearchText] = useState('');
 
+  if(!onlineStatus)
+    return <h1>Looks like you are offline. PLease check your internet connection</h1>;
 
     return listOfRestaurant?.length === 0 ? <Shimmer /> : (
       <div className="body">
@@ -52,7 +61,7 @@ import { Link } from 'react-router-dom';
           {
 
           filtredRestaurant?.map((res) => (
-            <Link to={`/restaurants/${res?.info?.id}`}> <RestaurantCrad resData = {res} key={res?.info?.id}  /></Link>
+            <Link key={res?.info?.id} to={`/restaurants/${res?.info?.id}`}> <RestaurantCrad resData = {res} key={res?.info?.id}  /></Link>
             ))
           }
           
