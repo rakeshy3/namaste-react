@@ -30,7 +30,6 @@ import useOnlineStatus from '../utils/useOnlineStatus';
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   const [filtredRestaurant, setFiltredRestaurant] = useState([]);
   const [searchText, setsearchText] = useState('');
-
   if(!onlineStatus)
     return <h1>Looks like you are offline. PLease check your internet connection</h1>;
 
@@ -64,7 +63,9 @@ import useOnlineStatus from '../utils/useOnlineStatus';
           {
 
           filtredRestaurant?.map((res) => (
-            <Link key={res?.info?.id} to={`/restaurants/${res?.info?.id}`}> <RestaurantCrad resData = {res} key={res?.info?.id}  /></Link>
+            <Link key={res?.info?.id} to={`/restaurants/${res?.info?.id}`}> 
+              <RestaurantCrad resData = {res} key={res?.info?.id}  />
+            </Link>
             ))
           }
           
